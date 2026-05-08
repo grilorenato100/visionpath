@@ -20,12 +20,18 @@ export default defineConfig(({ mode }) => {
       hmr: process.env.DISABLE_HMR !== 'true',
       headers: {
         'Content-Type': 'application/javascript; charset=utf-8',
+        'Access-Control-Allow-Origin': '*',
       },
+      middlewareMode: false,
     },
     build: {
       outDir: 'dist',
       sourcemap: false,
       minify: 'terser',
+      terserOptions: {
+        compress: true,
+        mangle: true,
+      },
       rollupOptions: {
         output: {
           entryFileNames: 'assets/[name]-[hash].js',
