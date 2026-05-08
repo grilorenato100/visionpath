@@ -18,6 +18,9 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       hmr: process.env.DISABLE_HMR !== 'true',
+      headers: {
+        'Content-Type': 'application/javascript; charset=utf-8',
+      },
     },
     build: {
       outDir: 'dist',
