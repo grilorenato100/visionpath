@@ -1,45 +1,7 @@
-import tailwindcss from '@tailwindcss/vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-export default defineConfig(({ mode }) => {
-base: '/visionpath/',
-  const env = loadEnv(mode, '.', '');
-  return {
-    base: '/visionpath/',
-    plugins: [react(), tailwindcss()],
-    define: {
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-    },
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, '.'),
-      },
-    },
-    server: {
-      hmr: process.env.DISABLE_HMR !== 'true',
-      headers: {
-        'Content-Type': 'application/javascript; charset=utf-8',
-        'Access-Control-Allow-Origin': '*',
-      },
-      middlewareMode: false,
-    },
-    build: {
-      outDir: 'dist',
-      sourcemap: false,
-      minify: 'terser',
-      terserOptions: {
-        compress: true,
-        mangle: true,
-      },
-      rollupOptions: {
-        output: {
-          entryFileNames: 'assets/[name]-[hash].js',
-          chunkFileNames: 'assets/[name]-[hash].js',
-          assetFileNames: 'assets/[name]-[hash].[ext]',
-        },
-      },
-    },
-  };
-});
+export default defineConfig({
+  plugins: [react()],
+  base: '/visionpath/',
+})
