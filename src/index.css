@@ -28,3 +28,11 @@
     @apply bg-dark-surface border border-zinc-800 rounded-xl p-8;
   }
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+}
